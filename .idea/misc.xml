@@ -3,15 +3,19 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../../../layout/custom_preview.xml" value="0.16276978417266186" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.162" />
+        <entry key="app/src/main/res/drawable/line_sample.xml" value="0.1345" />
         <entry key="app/src/main/res/layout-land/activity_main.xml" value="0.23645833333333333" />
         <entry key="app/src/main/res/layout/activity_food.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_food_new.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_foodlist.xml" value="0.20846905537459284" />
-        <entry key="app/src/main/res/layout/activity_insert.xml" value="0.16589434661723818" />
+        <entry key="app/src/main/res/layout/activity_insert.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_insert_popup.xml" value="0.21975203078238564" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/layout.xml" value="0.33133817870884996" />
       </map>
     </option>
   </component>

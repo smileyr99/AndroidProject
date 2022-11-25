@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.TextView;
 
 
 public class InsertPopupActivity extends Activity {
@@ -31,6 +32,7 @@ public class InsertPopupActivity extends Activity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), InsertActivity.class);
                 intent.putExtra("date", date);
+                intent.putExtra("recordTime", "음주");
                 startActivity(intent);
             }
         });
@@ -41,6 +43,7 @@ public class InsertPopupActivity extends Activity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), InsertActivity.class);
                 intent.putExtra("date", date);
+                intent.putExtra("recordTime", "아침");
                 startActivity(intent);
             }
         });
@@ -51,9 +54,11 @@ public class InsertPopupActivity extends Activity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), InsertActivity.class);
                 intent.putExtra("date", date);
+                intent.putExtra("recordTime", "점심");
                 startActivity(intent);
             }
         });
+
 
         desertBtn = (Button) findViewById(R.id.desertBtn);
         desertBtn.setOnClickListener(new View.OnClickListener() {
@@ -61,6 +66,7 @@ public class InsertPopupActivity extends Activity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), InsertActivity.class);
                 intent.putExtra("date", date);
+                intent.putExtra("recordTime", "저녁");
                 startActivity(intent);
             }
         });
@@ -71,6 +77,7 @@ public class InsertPopupActivity extends Activity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), InsertActivity.class);
                 intent.putExtra("date", date);
+                intent.putExtra("recordTime", "간식");
                 startActivity(intent);
             }
         });
