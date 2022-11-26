@@ -6,8 +6,11 @@ import androidx.fragment.app.DialogFragment;
 
 import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -46,6 +49,12 @@ public class InsertActivity extends AppCompatActivity implements TimePickerDialo
 
     RatingBar ratingBar;
     TextView tv_ratingbar;
+
+    EditText editMemo;
+
+    Button insertBtn;
+
+    SQLiteDatabase msqLiteDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,16 +110,32 @@ public class InsertActivity extends AppCompatActivity implements TimePickerDialo
         //listAdapter.addItem(new MenuListItem("피자", "800"));
         listView.setAdapter(listAdapter);
 
-        //메뉴 클릭시 토스트
+        //메뉴 클릭시 삭제 기능 + 삭제완료 토스트
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                int count, checked;
+                count = listAdapter.getCount();
                 MenuListItem item = (MenuListItem) listAdapter.getItem(position);
-                Toast.makeText(getApplication(), item.getMenuName(), Toast.LENGTH_SHORT).show();
+                if (count > 0){
+                    Log.v("test", "삭제 점검");
+                        // 아이템 삭제
+                        listAdapter.delItem(item) ;
+                        Log.v("test", "삭제 점검1");
+                        // listview 선택 초기화.
+                        listView.clearChoices();
+                        Log.v("test", "삭제 점검2");
+                        // listview 갱신.
+                        listAdapter.notifyDataSetChanged();
+                        Log.v("test", "삭제 점검3");
+                }
+
+                Toast.makeText(getApplication(), item.getMenuName()+" 삭제 완료", Toast.LENGTH_SHORT).show();
+
             }
         });
 
-        //추가하기 버튼
+        // 메뉴 추가하기 버튼
         menuPlusBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -122,6 +147,7 @@ public class InsertActivity extends AppCompatActivity implements TimePickerDialo
             }
         });
 
+        // 평점
         ratingBar = findViewById(R.id.ratingBar);
         tv_ratingbar = findViewById(R.id.tv_ratingbar);
         ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
@@ -130,6 +156,20 @@ public class InsertActivity extends AppCompatActivity implements TimePickerDialo
                 tv_ratingbar.setText(String.valueOf(rating));
             }
         });
+
+        editMemo = findViewById(R.id.edit_memo);
+
+        // 저장 후 foodList로 가기
+        insertBtn = (Button) findViewById(R.id.insertBtn);
+        insertBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), FoodlistActivity.class);
+                intent.putExtra("date", date);
+                startActivity(intent);
+            }
+        });
+
     }
 
 
@@ -140,6 +180,10 @@ public class InsertActivity extends AppCompatActivity implements TimePickerDialo
 
         public void addItem(MenuListItem item){
             listItem.add(item);
+        }
+
+        public void delItem(Object o){
+            listItem.remove(o);
         }
 
         @Override
