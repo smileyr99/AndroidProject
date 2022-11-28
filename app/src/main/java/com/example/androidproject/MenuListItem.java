@@ -18,7 +18,7 @@ public class MenuListItem {
     }
 
     public String getCalories() {
-        return calories + "kcal";
+        return calories;
     }
 
     public void setCalories(String calories) {

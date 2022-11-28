@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.androidproject">
-
     <!-- 저장 파일에 접근하기 위한 퍼미션 설정 -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -17,6 +16,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidProject"
         tools:targetApi="31">
+        <activity
+            android:name=".DetailActivity"
+            android:exported="false" />
+
+        <provider
+            android:name=".FoodContentProvider"
+            android:authorities="com.course.ContentProvider"
+            android:enabled="true"
+            android:exported="true">
+        </provider>
+
         <activity
             android:name=".InsertActivity"
             android:exported="false" />
@@ -39,7 +49,8 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:exported="true"></activity>
+            android:exported="true">
+        </activity>
     </application>
 
 </manifest>

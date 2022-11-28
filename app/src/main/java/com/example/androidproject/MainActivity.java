@@ -1,7 +1,10 @@
 package com.example.androidproject;
 
+import static com.example.androidproject.FoodContentProvider._DATE;
+
 import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -57,5 +60,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
 
 }

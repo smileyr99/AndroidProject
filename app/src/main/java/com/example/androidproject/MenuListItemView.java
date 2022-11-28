@@ -37,7 +37,7 @@ public class MenuListItemView extends LinearLayout {
     }
 
     public void setCal(String str){
-        tx_calories.setText(str);
+        tx_calories.setText(str + "kcal");
     }
 
 }

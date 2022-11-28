@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,39 +9,63 @@
     tools:context=".FoodlistActivity">
 
     <LinearLayout
+        android:id="@+id/LinearLayout1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
-        android:orientation="vertical"
         android:gravity="center"
-        app:layout_constraintTop_toTopOf="parent">
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/date"
-            android:layout_marginBottom="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
             android:gravity="center"
             android:text="오늘 날짜"
             android:textColor="#FFFFFF"
             android:textSize="32sp" />
+
         <TextView
             android:id="@+id/calorie"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="15dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="15dp"
             android:gravity="center"
-            android:textColor="#FFFFFF"
             android:text="하루 총 칼로리"
+            android:textColor="#FFFFFF"
             android:textSize="27sp" />
+    </LinearLayout>
+
+
+
+
+    <LinearLayout
+        android:id="@+id/linear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="150dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ListView
+            android:id="@+id/lv_list"
+            android:layout_width="match_parent"
+            android:layout_height="419dp"
+            android:layout_above="@id/linear"
+            android:layout_alignParentTop="true"
+            android:divider="@null" />
 
         <ImageButton
+            android:id="@+id/insertBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/insertBtn"
             android:padding="0dp"
-            android:src="@drawable/plus"/>
+            android:src="@drawable/plus" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -50,8 +73,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="680dp"
         android:orientation="vertical"
-        android:gravity="center"
-        app:layout_constraintTop_toTopOf="parent">
+        android:gravity="center">
 
         <ImageButton
             android:layout_width="wrap_content"
@@ -59,7 +81,6 @@
             android:id="@+id/backBtn"
             android:padding="0dp"
             android:src="@drawable/menu"/>
-
     </LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>
