@@ -72,7 +72,7 @@ public class DetailActivity extends AppCompatActivity {
         tv_menu3 = (TextView) findViewById(R.id.tv_menu3);
         ratingBar = findViewById(R.id.ratingBar);
         tv_total_calorie = (TextView) findViewById(R.id.tv_total_calorie);
-        String[] columns = new String[]{"_time", "image", "score", "memo", "menu_name1", "menu_name2", "menu_name3", "calorie1", "calorie2", "calorie3", "total_calorie"};
+        String[] columns = new String[]{"_time", "image", "score", "memo", "menu_name1", "menu_name2", "menu_name3", "amount1", "amount2", "amount3", "total_calorie"};
         String where = _DATE + "=" + "\"" + date + "\"" + " and " + WHEN + "=" + "\"" + when + "\"";
         Cursor c = getContentResolver().query(FoodContentProvider.CONTENT_URI, columns, where, null, null, null);
         if (c != null) {
@@ -83,12 +83,12 @@ public class DetailActivity extends AppCompatActivity {
                 tv_score.setText(score);
                 ratingBar.setRating(Float.parseFloat(score));
                 tv_memo.setText(c.getString(3));
-                tv_menu1.setText(c.getString(4) + "    " + c.getString(7) + "kcal");
+                tv_menu1.setText(c.getString(4) + "    " + c.getString(7) + "g/개");
                 if (c.getString(5) != null) {
-                    tv_menu2.setText(c.getString(5) + "    " + c.getString(8) + "kcal");
+                    tv_menu2.setText(c.getString(5) + "    " + c.getString(8) + "g/개");
                 }
                 if (c.getString(6) != null) {
-                    tv_menu3.setText(c.getString(6) + "    " + c.getString(9) + "kcal");
+                    tv_menu3.setText(c.getString(6) + "    " + c.getString(9) + "g/개");
                 }
                 tv_total_calorie.setText(c.getString(10) + " kcal");
                 Glide.with(getApplicationContext()).load(image).override(500, 500).into(foodImg);

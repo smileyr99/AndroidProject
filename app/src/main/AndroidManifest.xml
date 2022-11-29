@@ -2,9 +2,16 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.androidproject">
+
     <!-- 저장 파일에 접근하기 위한 퍼미션 설정 -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <!--맵 관력 퍼미션 설정 -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
 
     <application
         android:allowBackup="true"
@@ -16,6 +23,24 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidProject"
         tools:targetApi="31">
+
+        <!--
+             TODO: Before you run your application, you need a Google Maps API key.
+
+             To get one, follow the directions here:
+
+                https://developers.google.com/maps/documentation/android-sdk/get-api-key
+
+             Once you have your API key (it starts with "AIza"), define a new property in your
+             project's local.properties file (e.g. MAPS_API_KEY=Aiza...), and replace the
+             "YOUR_API_KEY" string in this file with "${MAPS_API_KEY}".
+
+           <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyB94dvlPTe9k0ZfVisBA0fIovGT87kk8ck" />
+        -->
+
+
         <activity
             android:name=".DetailActivity"
             android:exported="false" />
@@ -24,8 +49,7 @@
             android:name=".FoodContentProvider"
             android:authorities="com.course.ContentProvider"
             android:enabled="true"
-            android:exported="true">
-        </provider>
+            android:exported="true" />
 
         <activity
             android:name=".InsertActivity"
@@ -49,8 +73,7 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:exported="true">
-        </activity>
+            android:exported="true" />
     </application>
 
 </manifest>

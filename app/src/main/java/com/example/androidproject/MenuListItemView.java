@@ -11,7 +11,7 @@ import androidx.annotation.Nullable;
 public class MenuListItemView extends LinearLayout {
 
     TextView tx_menuName;
-    TextView tx_calories;
+    TextView tx_amount;
 
     public MenuListItemView(Context context) {
         super(context);
@@ -28,7 +28,7 @@ public class MenuListItemView extends LinearLayout {
         layoutInflater.inflate(R.layout.menu_list_item, this, true);
 
         tx_menuName = findViewById(R.id.menuName);
-        tx_calories = findViewById(R.id.calories);
+        tx_amount = findViewById(R.id.amount);
     }
 
 
@@ -36,8 +36,8 @@ public class MenuListItemView extends LinearLayout {
         tx_menuName.setText(str);
     }
 
-    public void setCal(String str){
-        tx_calories.setText(str + "kcal");
+    public void setAmount(String str){
+        tx_amount.setText(str + "g/개");
     }
 
 }

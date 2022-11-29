@@ -2,11 +2,11 @@ package com.example.androidproject;
 
 public class MenuListItem {
     private String MenuName;
-    private String calories;
+    private String amount;
 
-    public MenuListItem(String MenuName,  String calories) {
+    public MenuListItem(String MenuName,  String amount) {
         this.MenuName  = MenuName;
-        this.calories = calories;
+        this.amount = amount;
     }
 
     public String getMenuName() {
@@ -17,11 +17,11 @@ public class MenuListItem {
         MenuName = menuName;
     }
 
-    public String getCalories() {
-        return calories;
+    public String getAmount() {
+        return amount;
     }
 
-    public void setCalories(String calories) {
-        this.calories = calories;
+    public void setAmount(String amount) {
+        this.amount = amount;
     }
 }

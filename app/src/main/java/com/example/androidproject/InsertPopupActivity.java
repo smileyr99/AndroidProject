@@ -2,6 +2,8 @@ package com.example.androidproject;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -23,6 +25,7 @@ public class InsertPopupActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_insert_popup);
 
+        getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         Intent intent = getIntent();
         String date = intent.getStringExtra("date");
 

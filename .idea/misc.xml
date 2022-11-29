@@ -7,6 +7,7 @@
         <entry key="../../../Library/Android/sdk/platforms/android-32/data/res/layout/simple_list_item_single_choice.xml" value="0.33133817870884996" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1" />
         <entry key="app/src/main/res/drawable-v24/shape_itembackground2.xml" value="0.124" />
+        <entry key="app/src/main/res/drawable-v24/shape_itembackground3.xml" value="0.156" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.162" />
         <entry key="app/src/main/res/drawable/line_sample.xml" value="0.1345" />
         <entry key="app/src/main/res/drawable/shape_itembackground.xml" value="0.1415" />
@@ -16,9 +17,11 @@
         <entry key="app/src/main/res/layout/activity_food_new.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_foodlist.xml" value="0.20846905537459284" />
         <entry key="app/src/main/res/layout/activity_insert.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/activity_insert_popup.xml" value="0.21975203078238564" />
+        <entry key="app/src/main/res/layout/activity_insert_popup.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/activity_maps.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_maps_activity.xml" value="0.1" />
         <entry key="app/src/main/res/layout/item_listview.xml" value="0.33" />
         <entry key="app/src/main/res/layout/layout.xml" value="0.33133817870884996" />
         <entry key="app/src/main/res/layout/menu_list_item.xml" value="0.1" />

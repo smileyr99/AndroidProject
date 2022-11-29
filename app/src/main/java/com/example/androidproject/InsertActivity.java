@@ -7,7 +7,6 @@ import androidx.fragment.app.DialogFragment;
 import android.app.TimePickerDialog;
 import android.content.ContentValues;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
@@ -30,7 +29,10 @@ import com.bumptech.glide.Glide;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Objects;
+
 
 //--------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -47,14 +49,15 @@ public class InsertActivity extends AppCompatActivity implements TimePickerDialo
     ImageView foodImg;
     Uri ImgUri;
     Button imgBtn;
+    ImageButton mapBtn;
 
     ListView listView;
     ListAdapter listAdapter;
     EditText editTextName;
     EditText editTextCalories;
     String[] menu_name = new String[3];
-    String[] calorie = new String[3];
-    Button menuPlusBtn;
+    String[] amount = new String[3];
+    ImageButton menuPlusBtn;
 
     RatingBar ratingBar;
     TextView tv_ratingbar;
@@ -63,9 +66,8 @@ public class InsertActivity extends AppCompatActivity implements TimePickerDialo
     String total_calorie;
 
     Button insertBtn;
-
-    SQLiteDatabase msqLiteDatabase;
-
+    FoodDataList[] foodData = new FoodDataList[20];
+    ArrayList<FoodDataList> foodDataLists = new ArrayList<>();
 //--------------------------------------------------------------------------------------------------------------------------------------------
 
     @Override
@@ -78,13 +80,38 @@ public class InsertActivity extends AppCompatActivity implements TimePickerDialo
         recordTime = intent.getStringExtra("recordTime");
 
 
-        tv_date = (TextView)findViewById(R.id.date);
+        tv_date = (TextView) findViewById(R.id.date);
         tv_date.setTypeface(null, Typeface.BOLD);
         tv_date.setText(date);
 
-        tv_recordTime = (TextView)findViewById(R.id.recordTime);
+        tv_recordTime = (TextView) findViewById(R.id.recordTime);
         tv_recordTime.setTypeface(null, Typeface.BOLD);
         tv_recordTime.setText(recordTime);
+
+        //샘플데이터 추가하기
+        foodData[0] = new FoodDataList("김치찌개", "300", "564");
+        foodData[1] = new FoodDataList("치킨", "1", "970");
+        foodData[2] = new FoodDataList("밥", "1", "300");
+        foodData[3] = new FoodDataList("계란후라이", "1", "89");
+        foodData[4] = new FoodDataList("소고기구이", "200", "508");
+        foodData[5] = new FoodDataList("삼겹살", "200", "662");
+        foodData[6] = new FoodDataList("초밥", "1", "780");
+        foodData[7] = new FoodDataList("피자", "1", "1161");
+        foodData[8] = new FoodDataList("커피", "1", "2");
+        foodData[9] = new FoodDataList("맥주", "1", "153");
+        foodData[10] = new FoodDataList("빵", "1", "330");
+        foodData[11] = new FoodDataList("닭발", "1", "974");
+        foodData[12] = new FoodDataList("돈까스", "200", "480");
+        foodData[13] = new FoodDataList("냉모밀", "1", "320");
+        foodData[14] = new FoodDataList("라면", "1", "550");
+        foodData[15] = new FoodDataList("햄버거", "1", "642");
+        foodData[16] = new FoodDataList("족발", "300", "639");
+        foodData[17] = new FoodDataList("조각케이크", "1", "300");
+        foodData[18] = new FoodDataList("닭가슴살", "300", "495");
+        foodData[19] = new FoodDataList("닭가슴살", "100", "165");
+
+        foodDataLists.addAll(Arrays.asList(foodData).subList(0, 20));
+
 
         // foodList로 가기
         backBtn = (ImageButton) findViewById(R.id.backBtn);
@@ -109,7 +136,7 @@ public class InsertActivity extends AppCompatActivity implements TimePickerDialo
                 Intent intent = new Intent();
                 intent.setType("image/*");
                 intent.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(intent,0);
+                startActivityForResult(intent, 0);
             }
         });
 
@@ -122,42 +149,53 @@ public class InsertActivity extends AppCompatActivity implements TimePickerDialo
         //listAdapter.addItem(new MenuListItem("피자", "800"));
         listView.setAdapter(listAdapter);
 
-        //메뉴 클릭시 삭제 기능 + 삭제완료 토스트
+        //메뉴 토스트값으로 표시(임시)
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 int count, checked;
                 count = listAdapter.getCount();
                 MenuListItem item = (MenuListItem) listAdapter.getItem(position);
-                Toast.makeText(getApplication(), listAdapter.getItemId(position)+" 아이디값", Toast.LENGTH_SHORT).show();
-
+                Toast.makeText(getApplication(), listAdapter.getItemId(position) + " 아이디값", Toast.LENGTH_SHORT).show();
             }
         });
 
-        //메뉴 클릭시 삭제 기능 + 삭제완료 토스트
+        //메뉴 길게 클릭시 삭제 기능 + 삭제완료 토스트
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 int count, checked;
                 count = listAdapter.getCount();
                 MenuListItem item = (MenuListItem) listAdapter.getItem(position);
-                if (count > 0){
+                if (count > 0) {
                     Log.v("test", "삭제 점검");
-                        // 아이템 삭제
-                        listAdapter.delItem(item) ;
-                        Log.v("test", "삭제");
-                        // listview 선택 초기화.
-                        listView.clearChoices();
-                        Log.v("test", "뷰리셋");
-                        // listview 갱신.
-                        listAdapter.notifyDataSetChanged();
-                        Log.v("test", "삭제 점검3");
+                    // 아이템 삭제
+                    listAdapter.delItem(item);
+                    Log.v("test", "삭제");
+                    // listview 선택 초기화.
+                    listView.clearChoices();
+                    Log.v("test", "뷰리셋");
+                    // listview 갱신.
+                    listAdapter.notifyDataSetChanged();
+                    Log.v("test", "삭제 점검3");
                 }
-                Toast.makeText(getApplication(), item.getMenuName()+" 삭제 완료", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplication(), item.getMenuName() + " 삭제 완료", Toast.LENGTH_SHORT).show();
 
                 return true;
             }
         });
+
+
+  /*      // googleMap API로 가기
+        mapBtn = (ImageButton) findViewById(R.id.mapBtn);
+        mapBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), MapsActivity.class);
+                startActivity(intent);
+            }
+        });*/
+
 
         // 메뉴 추가하기 버튼
         menuPlusBtn.setOnClickListener(new View.OnClickListener() {
@@ -191,12 +229,18 @@ public class InsertActivity extends AppCompatActivity implements TimePickerDialo
             public void onClick(View view) {
                 int count, total = 0;
                 count = listAdapter.getCount();
-                for(int i = 0; i<count; i++){
+                for (int i = 0; i < count; i++) {
                     MenuListItem item = (MenuListItem) listAdapter.getItem(i);
-                    menu_name[i] = item.getMenuName();
-                    calorie[i] = item.getCalories();
-                    total += Integer.parseInt(calorie[i]);
+                    // 칼로리 찾기
+                    for (FoodDataList foodData : foodDataLists) {
+                        if (Objects.equals(item.getMenuName(), foodData.getMenu()) && Objects.equals(item.getAmount(), foodData.getAmount())) {
+                            menu_name[i] = item.getMenuName();
+                            amount[i] = item.getAmount();
+                            total += Integer.parseInt(foodData.getCalorie());
+                        }
+                    }
                 }
+
 
                 total_calorie = Integer.toString(total);
 
@@ -208,16 +252,16 @@ public class InsertActivity extends AppCompatActivity implements TimePickerDialo
                 addValues.put(FoodContentProvider.MENU_NAME1, menu_name[0]);
                 addValues.put(FoodContentProvider.MENU_NAME2, menu_name[1]);
                 addValues.put(FoodContentProvider.MENU_NAME3, menu_name[2]);
-                addValues.put(FoodContentProvider.CALORIE1, calorie[0]);
-                addValues.put(FoodContentProvider.CALORIE2, calorie[1]);
-                addValues.put(FoodContentProvider.CALORIE3, calorie[2]);
+                addValues.put(FoodContentProvider.AMOUNT1, amount[0]);
+                addValues.put(FoodContentProvider.AMOUNT2, amount[1]);
+                addValues.put(FoodContentProvider.AMOUNT3, amount[2]);
                 addValues.put(FoodContentProvider.SCORE, tv_ratingbar.getText().toString());
                 addValues.put(FoodContentProvider.MEMO, editMemo.getText().toString());
                 addValues.put(FoodContentProvider.TOTAL_CALORIE, total_calorie);
                 getContentResolver().insert(FoodContentProvider.CONTENT_URI, addValues);
                 Intent intent = new Intent(getApplicationContext(), FoodlistActivity.class);
                 intent.putExtra("date", date);
-                Toast.makeText(getBaseContext(),"등록되었습니다.", Toast.LENGTH_LONG).show();
+                Toast.makeText(getBaseContext(), "등록되었습니다.", Toast.LENGTH_LONG).show();
                 startActivity(intent);
             }
         });
@@ -231,11 +275,11 @@ public class InsertActivity extends AppCompatActivity implements TimePickerDialo
 
         ArrayList<MenuListItem> listItem = new ArrayList<>();
 
-        public void addItem(MenuListItem item){
+        public void addItem(MenuListItem item) {
             listItem.add(item);
         }
 
-        public void delItem(Object o){
+        public void delItem(Object o) {
             listItem.remove(o);
         }
 
@@ -258,7 +302,7 @@ public class InsertActivity extends AppCompatActivity implements TimePickerDialo
         public View getView(int position, View convertView, ViewGroup parent) {
             // 화면에 보이지 않는 뷰를 다시 재사용할 수 있게 하여 데이터를 모두 생성할 필요 없게 한다.
             MenuListItemView listItemView = null;
-            if(convertView == null)
+            if (convertView == null)
                 listItemView = new MenuListItemView(getApplicationContext());
             else
                 listItemView = (MenuListItemView) convertView;  // convertView: 이전에 썼던 뷰
@@ -266,7 +310,7 @@ public class InsertActivity extends AppCompatActivity implements TimePickerDialo
             MenuListItem item = listItem.get(position);
 
             listItemView.setName(item.getMenuName());
-            listItemView.setCal(item.getCalories());
+            listItemView.setAmount(item.getAmount());
 
             return listItemView;
         }
@@ -275,14 +319,14 @@ public class InsertActivity extends AppCompatActivity implements TimePickerDialo
 
 
     //타임 다이얼로그 보여주기
-    public void onClickTime(View view){
+    public void onClickTime(View view) {
         DialogFragment df = new TimPickerDialog();
         df.show(getSupportFragmentManager(), "Time Picker");
     }
 
 
     //현재 시간 디폴트 설정과 설정한 시간 셋팅
-    public void onTimeSet(TimePicker timePicker, int hour, int minute){
+    public void onTimeSet(TimePicker timePicker, int hour, int minute) {
         Calendar cal = Calendar.getInstance();
         cal.set(Calendar.HOUR_OF_DAY, hour);
         cal.set(Calendar.MINUTE, minute);
@@ -296,9 +340,9 @@ public class InsertActivity extends AppCompatActivity implements TimePickerDialo
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == 0){
-            if(resultCode == RESULT_OK){
-                Glide.with(getApplicationContext()).load(data.getData()).override(500,500).into(foodImg);
+        if (requestCode == 0) {
+            if (resultCode == RESULT_OK) {
+                Glide.with(getApplicationContext()).load(data.getData()).override(500, 500).into(foodImg);
                 ImgUri = data.getData();
             }
         }

@@ -16,7 +16,7 @@ public class FoodlistDBManger extends SQLiteOpenHelper {
             "(_date varchar(100), _when varchar(50), _time varchar(50), image text, location varchar(50)," +
             " location_x varchar(100), location_y  varchar(100), score varchar(10), memo text, total_calorie varchar(100), "+
             "menu_name1 varchar(50), menu_name2 varchar(50), menu_name3 varchar(50)," +
-            "calorie1 varchar(50), calorie2 varchar(50), calorie3 varchar(50),"+
+            "amount1 varchar(50), amount2 varchar(50), amount3 varchar(50),"+
             " primary key (_date,_when));";
 
 

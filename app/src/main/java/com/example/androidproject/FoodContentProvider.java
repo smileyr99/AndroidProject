@@ -24,9 +24,9 @@ public class FoodContentProvider extends ContentProvider {
     static final String MENU_NAME1 = "menu_name1";
     static final String MENU_NAME2 = "menu_name2";
     static final String MENU_NAME3 = "menu_name3";
-    static final String CALORIE1 = "calorie1";
-    static final String CALORIE2 = "calorie2";
-    static final String CALORIE3 = "calorie3";
+    static final String AMOUNT1 = "amount1";
+    static final String AMOUNT2 = "amount2";
+    static final String AMOUNT3 = "amount3";
     public FoodlistDBManger dbManager;
 
     public FoodContentProvider() {
