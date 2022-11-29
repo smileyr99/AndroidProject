@@ -9,7 +9,6 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
-
     <!-- 맵 관력 퍼미션 설정 -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -44,10 +43,13 @@
             android:value="AIzaSyB94dvlPTe9k0ZfVisBA0fIovGT87kk8ck" />
 
         <activity
+            android:name=".MapsViewActivity"
+            android:exported="false"
+            android:label="@string/title_activity_maps_view" />
+        <activity
             android:name=".MapsActivity"
             android:exported="false"
             android:label="@string/title_activity_maps" />
-
         <activity
             android:name=".DetailActivity"
             android:exported="false" />

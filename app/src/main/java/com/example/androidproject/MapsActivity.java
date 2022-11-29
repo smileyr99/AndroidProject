@@ -59,8 +59,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-        Intent intent = getIntent();
-
 
         // InsertActivity로 가기
         summitBtn = (Button) findViewById(R.id.summitBtn);

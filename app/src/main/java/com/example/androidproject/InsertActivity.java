@@ -339,11 +339,17 @@ public class InsertActivity extends AppCompatActivity implements TimePickerDialo
 
     //현재 시간 디폴트 설정과 설정한 시간 셋팅
     public void onTimeSet(TimePicker timePicker, int hour, int minute) {
+        timePicker.setIs24HourView(true);
         Calendar cal = Calendar.getInstance();
         cal.set(Calendar.HOUR_OF_DAY, hour);
         cal.set(Calendar.MINUTE, minute);
-
-        SimpleDateFormat sdf = new SimpleDateFormat("KK시 mm분");
+        SimpleDateFormat sdf;
+        if (hour > 12) {
+            hour -= 12;
+             sdf = new SimpleDateFormat("오후 KK시 mm분");
+        } else {
+             sdf = new SimpleDateFormat("오전 KK시 mm분");
+        }
         time = sdf.format(cal.getTime());
         timeBtn.setText(time);
     }
@@ -357,8 +363,7 @@ public class InsertActivity extends AppCompatActivity implements TimePickerDialo
                 Glide.with(getApplicationContext()).load(data.getData()).override(500, 500).into(foodImg);
                 ImgUri = data.getData();
             }
-        }
-        if (requestCode == 1) {
+        }else if (requestCode == 1) {
             if (resultCode == RESULT_OK) {
                 Latitude = data.getStringExtra("latitude");
                 Longitude = data.getStringExtra("longitude");

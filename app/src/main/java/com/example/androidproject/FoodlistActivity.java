@@ -142,13 +142,14 @@ public class FoodlistActivity extends AppCompatActivity {
         String[] columns = new String[]{"_when", "total_calorie"};
         String where = _DATE + "=" +  "\"" + date + "\"";
         int day_total_cal = 0;
-        Cursor c = getContentResolver().query(FoodContentProvider.CONTENT_URI, columns,  where, null, null, null);
+        Cursor c = getContentResolver().query(FoodContentProvider.CONTENT_URI, columns,  where, null, "_time", null);
         if (c != null) {
             ListViewAdapter adapter = new ListViewAdapter();
             while(c.moveToNext()){
                 day_total_cal += Integer.parseInt(c.getString(1));
                 //num 행은 가장 첫번째에 있으니 0번이 되고, name은 1번
                 adapter.addItemToList(c.getString(0),c.getString(1));
+
             }
             total_calorie = Integer.toString(day_total_cal);
             tv_calorie.setText("하루 총 칼로리 " +  total_calorie + " kcal");

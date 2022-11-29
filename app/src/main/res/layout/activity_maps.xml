@@ -37,7 +37,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="680dp"
-        android:background="@drawable/shape_itembackground2"
         android:orientation="horizontal">
 
         <Button
@@ -45,7 +44,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
-            android:onClick="searchLocation"
             android:backgroundTint="#EEC35D"
             android:text="확인" />
 
