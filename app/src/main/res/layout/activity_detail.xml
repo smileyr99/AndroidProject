@@ -226,7 +226,7 @@
                     android:src="@drawable/map"/>
 
                 <TextView
-                    android:id="@+id/loaction"
+                    android:id="@+id/tv_location"
                     android:layout_width="332dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
