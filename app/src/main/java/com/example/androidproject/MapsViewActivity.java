@@ -69,7 +69,7 @@ public class MapsViewActivity extends FragmentActivity implements OnMapReadyCall
         LatLng place = new LatLng(Latitude, Longitude);
         mMap.addMarker(new MarkerOptions().position(place).title(location));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(place));
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(place, 17f));
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(place, 15f));
 
     }
 }

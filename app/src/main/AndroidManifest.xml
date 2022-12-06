@@ -4,8 +4,6 @@
     package="com.example.androidproject">
 
     <!-- 저장 파일에 접근하기 위한 퍼미션 설정 -->
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
@@ -13,8 +11,8 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION " />
+    <uses-permission android:name="android.permission.INTERACT_ACROSS_USERS_FULL" />
+
 
     <application
         android:allowBackup="true"
@@ -25,35 +23,35 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidProject"
+        android:requestLegacyExternalStorage="true"
         tools:targetApi="31">
 
         <!--
-             TODO: Before you run your application, you need a Google Maps API key.
+         TODO: Before you run your application, you need a Google Maps API key.
 
-             To get one, follow the directions here:
+         To get one, follow the directions here:
 
-                https://developers.google.com/maps/documentation/android-sdk/get-api-key
+            https://developers.google.com/maps/documentation/android-sdk/get-api-key
 
-             Once you have your API key (it starts with "AIza"), define a new property in your
-             project's local.properties file (e.g. MAPS_API_KEY=Aiza...), and replace the
-             "YOUR_API_KEY" string in this file with "${MAPS_API_KEY}".
-        -->
+         Once you have your API key (it starts with "AIza"), define a new property in your
+         project's local.properties file (e.g. MAPS_API_KEY=Aiza...), and replace the
+         "YOUR_API_KEY" string in this file with "${MAPS_API_KEY}".
+    -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyB94dvlPTe9k0ZfVisBA0fIovGT87kk8ck" />
-
-        <activity
-            android:name=".MapsViewActivity"
-            android:exported="false"
-            android:label="@string/title_activity_maps_view" />
         <activity
             android:name=".MapsActivity"
             android:exported="false"
             android:label="@string/title_activity_maps" />
         <activity
+            android:name=".MapsViewActivity"
+            android:exported="false"
+            android:label="@string/title_activity_maps_view" />
+
+        <activity
             android:name=".DetailActivity"
             android:exported="false" />
-
         <provider
             android:name=".FoodContentProvider"
             android:authorities="com.course.ContentProvider"

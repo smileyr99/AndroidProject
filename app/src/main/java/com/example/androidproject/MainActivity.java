@@ -13,6 +13,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+
+//TODO github readme 만들기 -> 보고서 내용 대략 적으로 적어 넣기 + 데이터 베이스 
 public class MainActivity extends AppCompatActivity {
 
     CalendarView calendar;

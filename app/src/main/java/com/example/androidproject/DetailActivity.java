@@ -22,7 +22,6 @@ import com.bumptech.glide.Glide;
 
 public class DetailActivity extends AppCompatActivity {
 
-    //TODO 지도연결 + 디비 저장 확인
     ImageButton backBtn;
     String date;
     String when;
